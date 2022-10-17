@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Babel example</title>
+</head>
+<body>
+  <main>
+    <textarea id="input" cols="30" rows="10"></textarea>
+    <pre id="output"></pre>
+  </main>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    main {
+      display: flex;
+      flex-direction: row;
+      flex-basis: 1 1;
+    }
+
+    main > * {
+      border: 1px solid dashed;
+      height: 100dvh;
+      width: 50%;
+      overflow: scroll;
+    }
+  </style>
+  <script type="module">
+    import { transform } from "./bundle.js";
+
+    const input = document.querySelector("#input");
+    const output = document.querySelector("#output");
+
+    input.onchange = function() {
+      try {
+        output.textContent = transform(input.value, {}).code;
+      } catch (error) {
+        output.textContent = error.message;
+        console.error(error);
+      }
+    }
+  </script>
+</body>
+</html>
