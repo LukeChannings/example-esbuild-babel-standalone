@@ -1,9 +1,22 @@
 #!/usr/bin/env bash
 
-npm link ./shims/assert
-
+# Build for the web (index.html)
 npx esbuild \
   --platform=browser\
   --bundle main.js \
   --define:process.env.BABEL_TYPES_8_BREAKING=null \
-  --format=esm > bundle.js
+  --format=esm \
+  --legal-comments=none \
+  --minify \
+  --outfile=babel.esm.js
+
+# Build for JSC
+npx esbuild \
+  --platform=browser\
+  --bundle main.js \
+  --define:process.env.BABEL_TYPES_8_BREAKING=null \
+  --format=iife \
+  --global-name=babel \
+  --legal-comments=none \
+  --minify \
+  --outfile=JSC.playground/Resources/babel.bundle.js
