@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Some babel plugins depend on Node's assert module, which is not available.
+# This will shim it with a noop.
+npm link ./shims/assert
+
 # Build for the web (index.html)
 npx esbuild \
   --platform=browser\
