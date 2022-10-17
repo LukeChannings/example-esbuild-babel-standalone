@@ -1,6 +1,8 @@
 # Babel standalone with preset example using esbuild
 
-![screenshot](./screenshot.png)
+![Safari](./screenshot-safari.png)
+
+![Playground](./screenshot-playground.png)
 
 ## Usage
 
